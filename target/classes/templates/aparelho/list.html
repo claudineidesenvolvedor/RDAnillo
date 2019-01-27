@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>Aparelho</title>
+</head>
+<body>
+	<h1 layout:fragment="header">Lista de perfil</h1>
+	<div layout:fragment="content" class="container">
+		<a href="form.html" th:href="@{/aparelho/novo}">Novo aparelho</a>
+		<div class="alert alert-success" th:if="${globalMessage}"
+			th:text="${globalMessage}">mensagem</div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>Descrição Aparelho</td>
+					<td>Cod. Aparelho</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${aparelho.empty}">
+					<td colspan="3">Sem Perfil</td>
+				</tr>
+				<tr th:each="aparelho : ${aparelho}">
+					<td th:text="${aparelho.idAparelho}">1</td>
+					<td><a href="view.html"
+						th:href="@{'/aparelho/' + ${aparelho.idAparelho}}"
+						th:text="${aparelho.descricaoAparelho}"> Descrição Aparelho</a></td>
+					<td><a href="view.html"
+						th:href="@{'/aparelho/' + ${aparelho.idAparelho}}"
+						th:text="${aparelho.codigoAparelho}"> Cod. Aparelho</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

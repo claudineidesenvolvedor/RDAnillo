@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+ <title>Perfil</title>
+</head>
+<body>
+	<h1 layout:fragment="header">Perfil</h1>
+	<div layout:fragment="content" class="well">
+		<div class="alert alert-success" th:if="${globalMessage}"
+			th:text="${globalMessage}">Perfil gravado com sucesso</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Perfil</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td id="id" th:text="${perfil.idPerfil}">123</td>
+					<td id="nomePerfil" th:text="${perfil.nomePerfil}">Perfil...</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="pull-left">
+			<a href="form.html" th:href="@{'/perfil/alterar/' + ${perfil.idPerfil}}">alterar</a>
+			| <a href="perfil" th:href="@{'/perfil/remover/' + ${perfil.idPerfil}}">remover</a>
+		    | <a th:href="@{/perfil/}" href="list.html">voltar</a>
+		</div>
+	</div>
+</body>
+</html>

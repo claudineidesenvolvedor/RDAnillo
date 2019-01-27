@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>Usuario</title>
+<script>
+  $( function() {
+    $( "#data" ).datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd-mm-yy' 
+    });
+  } );
+  </script>
+</head>
+<body>
+	<h1 layout:fragment="header">Cadastro de Usuario</h1>
+	<div layout:fragment="content" class="input-form">
+
+		<div class="well">
+			<form id="usuarioForm" th:action="@{/usuario/(form)}"
+				th:object="${usuario}" action="#" method="post"
+				class="form-horizontal">
+				<div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
+					<p th:each="error : ${#fields.errors('*')}" th:text="${error}">Erro
+						de validação</p>
+				</div>
+
+				<input type="hidden" th:field="*{idUsuario}"
+					th:class="${#fields.hasErrors('idUsuario')} ? 'field-error'" />
+
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="nome">Nome</label> <input
+						class="col-sm-10" type="text" th:field="*{nomeUsuario}"
+						th:class="${#fields.hasErrors('nomeUsuario')} ? 'field-error'" />
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="nome">Login</label> <input
+						class="col-sm-10" type="text" th:field="*{login}"
+						th:class="${#fields.hasErrors('login')} ? 'field-error'" />
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="nome">E-mail</label> <input
+						class="col-sm-10" type="text" th:field="*{email}"
+						th:class="${#fields.hasErrors('email')} ? 'field-error'" />
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="nome">Senha</label> <input
+						class="col-sm-10" type="text" th:field="*{senha}"
+						th:class="${#fields.hasErrors('senha')} ? 'field-error'" />
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="nome">tempo Expiração Senha</label> <input
+						class="col-sm-10" type="text" th:field="*{tempoExpiracaoSenha}"
+						th:class="${#fields.hasErrors('tempoExpiracaoSenha')} ? 'field-error'" />
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="nome">cod Autorização</label> <input
+						class="col-sm-10" type="text" th:field="*{codAutorizacao}"
+						th:class="${#fields.hasErrors('codAutorizacao')} ? 'field-error'" />
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="nome">Ativo</label> <input
+						class="col-sm-10" type="radio" th:field="*{statusUsuario}"
+						th:class="${#fields.hasErrors('statusUsuario')} ? 'field-error'" />
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="nome">cod Pessoa</label> <input
+						class="col-sm-10" type="text" th:field="*{codPessoa}"
+						th:class="${#fields.hasErrors('codPessoa')} ? 'field-error'" />
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="text">Data</label> <input
+						class="col-sm-10" type="text" id="dataCriacao"
+						th:field="*{dataCriacao}"
+						th:class="${#fields.hasErrors('dataCriacao')} ? 'field-error'" />
+				</div>
+
+
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="text">Perfil</label> <select
+						id="perfilList" multiple="multiple" th:field="*{perfis}"
+						name="perfilListId">
+						<option th:each="perfil :${todosPerfil}" th:value="${{perfil}}"
+							th:text="${perfil.nomePerfil}" />
+					</select>
+
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="text">Aparelhos</label>
+					<select id="aparelhoList" multiple="multiple"
+						th:field="*{aparelhos}" name="aparelhoListId">
+						<option th:each="aparelho :${todosAparelhos}"
+							th:value="${{aparelho}}" th:text="${aparelho.descricaoAparelho}" />
+					</select>
+
+				</div>
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="submit" value="Gravar" />
+				</div>
+				<br /> <a th:href="@{/usuario/}" href="usuario.html"> voltar </a>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

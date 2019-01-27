@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: RDanillo
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Amanda
+Implementation-Vendor-Id: com.rdanillo
+Build-Jdk: 1.8.0_201
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/RDanillo
+Created-By: Maven Integration for Eclipse
+
