@@ -1,0 +1,10 @@
+create table aparelho (id_aparelho  serial not null, codigo_aparelho varchar(100) not null, descricao_aparelho varchar(15) not null, primary key (id_aparelho))
+create table perfil (id_perfil  serial not null, nome_perfil varchar(60) not null, primary key (id_perfil))
+create table usuario (id_usuario  serial not null, cod_autorizacao varchar(255) not null, cod_pessoa int4 not null, data_criacao timestamp not null, email varchar(60) not null, login varchar(12) not null, nome_usuario varchar(60) not null, senha varchar(45) not null, status_usuario varchar(255) not null, tempo_expiracao_senha int4 not null, primary key (id_usuario))
+create table usuario_lista_aparelhos (usuario_id_usuario int4 not null, lista_aparelhos_id_aparelho int4 not null)
+create table usuario_lista_perfil (usuario_id_usuario int4 not null, lista_perfil_id_perfil int4 not null)
+alter table usuario_lista_aparelhos add constraint FK1xaqt27892mugyvbj97aackan foreign key (lista_aparelhos_id_aparelho) references aparelho
+alter table usuario_lista_aparelhos add constraint FKie73f84f3knfaw1h3y1osxkv3 foreign key (usuario_id_usuario) references usuario
+alter table usuario_lista_perfil add constraint FK1vdb990rkctnsk1iswalypmv8 foreign key (lista_perfil_id_perfil) references perfil
+alter table usuario_lista_perfil add constraint FKlpnjkf8keakkoq08p1aqakbkr foreign key (usuario_id_usuario) references usuario
+
